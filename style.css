@@ -56,15 +56,34 @@ a {
 
 /* PROFIL */
 .profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  margin: 20px 0;
+  margin: 20px auto;
 }
+
 .profile-img {
   width: 90px;
   height: 90px;
   border-radius: 50%;
   border: 3px solid #fff;
   box-shadow: 0 0 10px cyan;
+  margin-bottom: 10px;
+}
+
+.profile-header span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+.profile-header p {
+  font-size: 14px;
+  color: #eee;
+  margin: 5px 0 0;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
 /* PRODUK GRID */
@@ -103,6 +122,10 @@ a {
 /* INFO PRODUK */
 .product-info {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 160px;
 }
 .product-info h3 {
   font-size: 14px;
@@ -125,11 +148,12 @@ a {
   cursor: pointer;
   font-size: 12px;
   font-weight: 600;
+  margin-top: auto;
 }
 
 /* TOMBOL ORDER */
 .order-btn {
-  margin-top: 6px;
+  margin-top: 8px;
   background: teal;
   color: white;
   padding: 8px 16px;
