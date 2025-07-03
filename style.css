@@ -1,0 +1,118 @@
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('https://files.catbox.moe/u2amkq.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+#preloader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.loader-text {
+  color: #00ffff;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  animation: blink 1.2s infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.marquee-text {
+  background: rgba(0, 0, 0, 0.6);
+  color: #00ffff;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  z-index: 2;
+}
+.profile-header {
+  text-align: center;
+  margin: 20px 0;
+}
+.profile-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px cyan;
+}
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px 16px;
+  gap: 16px;
+}
+.product-card {
+  width: 45%;
+  background: #fff;
+  color: #000;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.product-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 0 10px cyan;
+}
+.read-more {
+  background: none;
+  border: none;
+  color: #007BFF;
+  cursor: pointer;
+}
+.order-btn {
+  background: teal;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px #0a5c5c;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.order-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px #0a5c5c;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 20px cyan;
+}
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+}
