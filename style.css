@@ -5,6 +5,7 @@ body {
   background: url('https://files.catbox.moe/u2amkq.jpg') no-repeat center center fixed;
   background-size: cover;
   color: #fff;
+  box-sizing: border-box;
 }
 
 a {
@@ -44,6 +45,15 @@ a {
   z-index: 2;
 }
 
+/* BANNER */
+.pengumuman-banner {
+  width: 100%;
+  max-height: 120px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
 /* PROFIL */
 .profile-header {
   text-align: center;
@@ -77,6 +87,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 
 /* GAMBAR PRODUK */
@@ -162,42 +173,3 @@ a {
   font-weight: bold;
   cursor: pointer;
 }
-
-/* RESPONSIVE: TETAP 2 KOLOM DI HP */
-@media screen and (max-width: 600px) {
-  .product-card {
-    width: calc(50% - 10px);
-  }
-
-  .product-img {
-    width: 65px;
-    height: 65px;
-  }
-
-  .product-info h3 {
-    font-size: 13px;
-  }
-
-  .price, .stock, .desc {
-    font-size: 12px;
-  }
-
-  .order-btn {
-    font-size: 12px;
-    padding: 6px 10px;
-  }
-
-  .read-more {
-    font-size: 11px;
-  }
-
-  .profile-img {
-    width: 80px;
-    height: 80px;
-  }
-
-  .marquee-text {
-    font-size: 13px;
-    padding: 6px;
-  }
-  }
