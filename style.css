@@ -1,16 +1,9 @@
-/* GLOBAL */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: url('https://files.catbox.moe/u2amkq.jpg') no-repeat center center fixed;
   background-size: cover;
   color: #fff;
-  box-sizing: border-box;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
 }
 
 /* BANNER */
@@ -18,83 +11,65 @@ a {
   width: 100%;
   max-height: 350px;
   object-fit: cover;
-  display: block;
-  margin: 0 auto;
-  border-radius: 18px;
-  box-shadow: 0 0 10px rgba(0,255,255,0.3);
+  border-radius: 16px;
+  margin-bottom: 10px;
 }
 
-/* PROFIL */
+/* PROFILE */
 .profile-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
-  margin: 20px auto;
+  margin: 20px 0;
 }
 .profile-img {
   width: 90px;
   height: 90px;
   border-radius: 50%;
   border: 3px solid #fff;
-  box-shadow: 0 0 10px cyan;
-  margin-bottom: 10px;
+  box-shadow: 0 0 12px cyan;
 }
 .profile-header span {
-  font-size: 16px;
+  display: block;
   font-weight: 600;
-  color: #fff;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  font-size: 1.1rem;
+  margin-top: 8px;
 }
 .profile-header p {
-  font-size: 14px;
+  font-size: 0.9rem;
   color: #eee;
-  margin: 5px 0 0;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
 /* PRODUK GRID */
 .product-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 10px 16px;
   gap: 16px;
+  justify-content: space-between;
+  padding: 0 16px;
 }
 .product-card {
   width: calc(50% - 10px);
-  background: #ffffffd0;
+  background: #ffffffdd;
   color: #000;
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 10px;
-  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.4);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
   box-sizing: border-box;
 }
-
-/* PRODUK IMG */
 .product-img {
   width: 70px;
   height: 70px;
-  border-radius: 12px;
   object-fit: cover;
+  border-radius: 10px;
   box-shadow: 0 0 10px cyan;
   cursor: pointer;
 }
-
-/* INFO PRODUK */
 .product-info {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 160px;
+  margin-top: 10px;
 }
 .product-info h3 {
   font-size: 14px;
-  margin: 8px 0 4px;
+  margin: 6px 0;
 }
 .price, .stock {
   font-size: 13px;
@@ -102,40 +77,37 @@ a {
 }
 .desc {
   font-size: 13px;
-  margin: 6px 0;
 }
-
-/* TOMBOL BACA SELENGKAPNYA */
 .read-more {
   background: none;
   border: none;
-  color: #007BFF;
+  color: #009688;
   cursor: pointer;
   font-size: 12px;
-  font-weight: 600;
-  margin-top: auto;
+  font-weight: bold;
+  margin-top: 4px;
 }
 
 /* ORDER BUTTON */
 .order-btn {
-  margin-top: 8px;
   background: teal;
   color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 8px 14px;
   border: none;
-  box-shadow: 0 4px #0a5c5c;
-  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 4px #004d40;
+  margin-top: 8px;
   transition: 0.2s;
-  font-weight: 600;
+  display: inline-block;
   font-size: 13px;
 }
 .order-btn:active {
   transform: translateY(2px);
-  box-shadow: 0 2px #0a5c5c;
+  box-shadow: 0 2px #004d40;
 }
 
-/* FORM KIRIM PESAN */
+/* KIRIM PESAN */
 .message-btn {
   position: fixed;
   bottom: 90px;
@@ -179,9 +151,6 @@ a {
   font-family: inherit;
   font-size: 14px;
 }
-.modal-content h3 {
-  margin-top: 0;
-}
 .form-buttons {
   display: flex;
   justify-content: space-between;
@@ -221,7 +190,6 @@ a {
   border: none;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   cursor: pointer;
-  transition: 0.3s;
 }
 .menu-items {
   display: none;
@@ -239,6 +207,3 @@ a {
   font-size: 13px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
-.menu-items a:hover {
-  background: rgba(0, 128, 128, 1);
-  }
