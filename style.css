@@ -116,3 +116,48 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
+
+@media screen and (max-width: 600px) {
+  .product-card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .product-img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .price, .stock {
+    font-size: 14px;
+  }
+
+  .product-info h3 {
+    font-size: 15px;
+  }
+
+  .order-btn {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  .profile-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .pengumuman-banner {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .marquee-text {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .desc {
+    font-size: 13px;
+    padding: 0 8px;
+  }
+}
