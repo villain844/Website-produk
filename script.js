@@ -1,56 +1,48 @@
-// Preview gambar (produk, banner, profil)
-function showPreview(src) {
-  const modal = document.getElementById("img-modal");
-  const preview = document.getElementById("img-preview");
-  modal.style.display = "flex";
-  preview.src = src;
-}
+window.onload = () => {
+  setTimeout(() => {
+    document.getElementById("preloader").style.display = "none";
+  }, 3000);
+};
 
-// Tutup modal gambar atau form
-function closeModal() {
-  const imgModal = document.getElementById("img-modal");
-  const formPopup = document.getElementById("form-popup");
-  if (imgModal) imgModal.style.display = "none";
-  if (formPopup) formPopup.style.display = "none";
-}
-
-// Toggle deskripsi (lihat selengkapnya / sembunyikan)
 function toggleDesc(button) {
   const desc = button.previousElementSibling;
-  const shortText = desc.querySelector('.short-text');
-  const fullText = desc.querySelector('.full-text');
-  const show = fullText.style.display === 'none';
-  fullText.style.display = show ? 'inline' : 'none';
-  shortText.style.display = show ? 'none' : 'inline';
-  button.textContent = show ? 'Sembunyikan' : 'Lihat Selengkapnya';
+  const shortText = desc.querySelector(".short-text");
+  const fullText = desc.querySelector(".full-text");
+  const show = fullText.style.display === "none";
+  fullText.style.display = show ? "inline" : "none";
+  shortText.style.display = show ? "none" : "inline";
+  button.textContent = show ? "Sembunyikan" : "Lihat Selengkapnya";
 }
 
-// Toggle floating menu
-function toggleMenu() {
-  const menu = document.getElementById("menuItems");
-  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+function closeModal() {
+  document.getElementById("form-popup").style.display = "none";
 }
 
-// Kirim data ke SheetDB dari form
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("messageForm");
+function sendMessage(e) {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  fetch("https://sheetdb.io/api/v1/5ni7a9sbf13p3", {
+    method: "POST",
+    body: formData,
+  })
+    .then(res => {
+      if (res.ok) {
+        showToast();
+        form.reset();
+        closeModal();
+      } else {
+        alert("Gagal mengirim pesan");
+      }
+    })
+    .catch(() => alert("Terjadi kesalahan jaringan"));
+  return false;
+}
 
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const data = new FormData(form);
-
-      fetch("https://sheetdb.io/api/v1/5ni7a9sbf13p3", {
-        method: "POST",
-        body: data,
-      })
-        .then((res) => res.json())
-        .then(() => {
-          alert("✅ Pesan berhasil dikirim!");
-          form.reset();
-          closeModal();
-        })
-        .catch(() => alert("❌ Gagal mengirim pesan. Periksa koneksi."));
-    });
-  }
-});
+function showToast() {
+  const toast = document.getElementById("toast");
+  toast.className = "toast show";
+  setTimeout(() => {
+    toast.className = toast.className.replace("show", "");
+  }, 3000);
+}
