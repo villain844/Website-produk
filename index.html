@@ -11,19 +11,21 @@
 <body>
 
   <!-- Banner -->
-  <img src="https://files.catbox.moe/xunhl0.png" alt="Pengumuman Villain Hosting" class="pengumuman-banner" />
+  <img src="https://files.catbox.moe/xunhl0.png" alt="Pengumuman Villain Hosting" class="pengumuman-banner" onclick="showPreview(this.src)" />
 
   <!-- Profil -->
   <header class="profile-header">
-    <img src="https://files.catbox.moe/c7fi9o.png" alt="@villain hosting" class="profile-img" />
+    <img src="https://files.catbox.moe/c7fi9o.png" alt="@villain hosting" class="profile-img" onclick="showPreview(this.src)" />
     <span>@villain hosting</span>
     <p>Bismillahirrahmanirrahim</p>
   </header>
 
-  <!-- Produk -->
+  <!-- Produk Grid -->
   <main class="product-grid">
+
+    <!-- Produk 1 -->
     <div class="product-card">
-      <img src="https://files.catbox.moe/u3zzij.jpg" class="product-img" />
+      <img src="https://files.catbox.moe/u3zzij.jpg" class="product-img" onclick="showPreview(this.src)" />
       <div class="product-info">
         <h3>ADMIN CH¹</h3>
         <div class="price">IDR 1K</div>
@@ -37,8 +39,9 @@
       </div>
     </div>
 
+    <!-- Produk 2 -->
     <div class="product-card">
-      <img src="https://files.catbox.moe/gbo2p7.jpg" class="product-img" />
+      <img src="https://files.catbox.moe/gbo2p7.jpg" class="product-img" onclick="showPreview(this.src)" />
       <div class="product-info">
         <h3>NOKOS INDO</h3>
         <div class="price">IDR 4K</div>
@@ -51,6 +54,7 @@
         <a class="order-btn" href="https://wa.me/6285134380708?text=BG+MAU+ORDER+NOKOS+INDO" target="_blank">Order</a>
       </div>
     </div>
+
   </main>
 
   <!-- Tombol Kirim Pesan -->
@@ -69,6 +73,12 @@
     </form>
   </div>
 
+  <!-- Modal Preview Gambar -->
+  <div id="img-modal" class="modal" onclick="closeModal()">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="img-preview">
+  </div>
+
   <!-- Floating Menu -->
   <div class="floating-menu">
     <button onclick="toggleMenu()" class="menu-toggle">☰</button>
@@ -76,12 +86,6 @@
       <a href="#" onclick="document.getElementById('form-popup').style.display='flex'">Kirim Pesan</a>
       <a href="https://wa.me/6285134380708" target="_blank">Kontak Owner</a>
     </div>
-  </div>
-
-  <!-- Modal Gambar (opsional jika dibutuhkan) -->
-  <div id="img-modal" class="modal" onclick="closeModal()">
-    <span class="modal-close">&times;</span>
-    <img class="modal-content" id="img-preview">
   </div>
 
   <!-- Script -->
