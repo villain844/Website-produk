@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Villain Hosting</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -10,77 +10,81 @@
 </head>
 <body>
 
-  <!-- Preloader -->
-  <div id="preloader">
-    <div class="loader-text">Tunggu sebentar lagi proses...</div>
+  <!-- Banner -->
+  <img src="https://files.catbox.moe/xunhl0.png" alt="Pengumuman Villain Hosting" class="pengumuman-banner" />
+
+  <!-- Profil -->
+  <header class="profile-header">
+    <img src="https://files.catbox.moe/c7fi9o.png" alt="@villain hosting" class="profile-img" />
+    <span>@villain hosting</span>
+    <p>Bismillahirrahmanirrahim</p>
+  </header>
+
+  <!-- Produk -->
+  <main class="product-grid">
+    <div class="product-card">
+      <img src="https://files.catbox.moe/u3zzij.jpg" class="product-img" />
+      <div class="product-info">
+        <h3>ADMIN CH¹</h3>
+        <div class="price">IDR 1K</div>
+        <div class="stock">Stok: 20</div>
+        <p class="desc">
+          <span class="short-text">Spek liat aja, kenapa 1k karena sesuai spek...</span>
+          <span class="full-text" style="display:none;">Spek liat aja, kenapa 1k karena sesuai spek, harga bisa berubah.</span>
+        </p>
+        <button class="read-more" onclick="toggleDesc(this)">Lihat Selengkapnya</button>
+        <a class="order-btn" href="https://wa.me/6285134380708?text=BG+MAU+ORDER+ADMIN+CH1" target="_blank">Order</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://files.catbox.moe/gbo2p7.jpg" class="product-img" />
+      <div class="product-info">
+        <h3>NOKOS INDO</h3>
+        <div class="price">IDR 4K</div>
+        <div class="stock">Stok: 1</div>
+        <p class="desc">
+          <span class="short-text">Segera beli sebelum dibeli orang...</span>
+          <span class="full-text" style="display:none;">Segera beli sebelum dibeli orang lain</span>
+        </p>
+        <button class="read-more" onclick="toggleDesc(this)">Lihat Selengkapnya</button>
+        <a class="order-btn" href="https://wa.me/6285134380708?text=BG+MAU+ORDER+NOKOS+INDO" target="_blank">Order</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Tombol Kirim Pesan -->
+  <button class="message-btn" onclick="document.getElementById('form-popup').style.display='flex'">✉ Kirim Pesan</button>
+
+  <!-- Form Kirim Pesan -->
+  <div id="form-popup" class="modal" onclick="closeModal()">
+    <form id="messageForm" class="modal-content" onclick="event.stopPropagation()" action="https://sheetdb.io/api/v1/r6bza7neanvlh" method="POST">
+      <h3>Kirim Pesan ke Admin</h3>
+      <input type="text" name="data[nama]" placeholder="Nama Anda" required>
+      <textarea name="data[pesan]" placeholder="Tulis pesan..." required></textarea>
+      <div class="form-buttons">
+        <button type="submit" class="order-btn">Kirim</button>
+        <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
+      </div>
+    </form>
   </div>
 
-  <!-- Teks Berjalan -->
-  <marquee behavior="scroll" direction="left" class="marquee-text">
-    SELAMAT DATANG DI WEBSITE SAYA
-  </marquee>
-
-  <!-- Konten utama -->
-  <div id="main-content" style="display: none;">
-    <!-- Banner -->
-    <img src="https://files.catbox.moe/xunhl0.png" alt="Pengumuman" class="pengumuman-banner" onclick="showPreview(this.src)" />
-
-    <!-- Profil -->
-    <header class="profile-header">
-      <img src="https://files.catbox.moe/c7fi9o.png" class="profile-img" onclick="showPreview(this.src)" />
-      <span>@villain hosting</span>
-      <p>Bismillahirrahmanirrahim</p>
-    </header>
-
-    <!-- Produk -->
-    <main class="product-grid">
-      <div class="product-card">
-        <img src="https://files.catbox.moe/u3zzij.jpg" class="product-img" onclick="showPreview(this.src)">
-        <div class="product-info">
-          <h3>ADMIN CH¹</h3>
-          <div class="price">IDR 1K</div>
-          <div class="stock">Stok: 20</div>
-          <p class="desc">
-            <span class="short-text">Spek liat aja, kenapa 1k karena...</span>
-            <span class="full-text" style="display:none;">Spek liat aja, kenapa 1k karena sesuai spek, harga bisa berubah.</span>
-          </p>
-          <button class="read-more" onclick="toggleDesc(this)">Lihat Selengkapnya</button>
-          <a class="order-btn" href="https://wa.me/6285134380708?text=BG+MAU+ORDER+ADMIN+CH1" target="_blank">Order</a>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="https://files.catbox.moe/gbo2p7.jpg" class="product-img" onclick="showPreview(this.src)">
-        <div class="product-info">
-          <h3>NOKOS INDO</h3>
-          <div class="price">IDR 4K</div>
-          <div class="stock">Stok: 1</div>
-          <p class="desc">
-            <span class="short-text">Segera beli sebelum dibeli orang...</span>
-            <span class="full-text" style="display:none;">Segera beli sebelum dibeli orang lain</span>
-          </p>
-          <button class="read-more" onclick="toggleDesc(this)">Lihat Selengkapnya</button>
-          <a class="order-btn" href="https://wa.me/6285134380708?text=BG+MAU+ORDER+NOKOS+INDO" target="_blank">Order</a>
-        </div>
-      </div>
-    </main>
-
-    <!-- Modal Gambar -->
-    <div id="img-modal" class="modal" onclick="closeModal()">
-      <span class="modal-close">&times;</span>
-      <img id="img-preview" class="modal-content">
+  <!-- Floating Menu -->
+  <div class="floating-menu">
+    <button onclick="toggleMenu()" class="menu-toggle">☰</button>
+    <div class="menu-items" id="menuItems">
+      <a href="#" onclick="document.getElementById('form-popup').style.display='flex'">Kirim Pesan</a>
+      <a href="https://wa.me/6285134380708" target="_blank">Kontak Owner</a>
     </div>
   </div>
-<!-- Floating Menu -->
-<div class="floating-menu">
-  <button onclick="toggleMenu()" class="menu-toggle">☰</button>
-  <div class="menu-items" id="menuItems">
-    <a href="#" onclick="document.getElementById('form-popup').style.display='flex'">Kirim Pesan</a>
-    <a href="https://wa.me/6285134380708" target="_blank">Kontak Owner</a>
-  </div>
-</div>
-  
 
+  <!-- Modal Gambar (opsional jika dibutuhkan) -->
+  <div id="img-modal" class="modal" onclick="closeModal()">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="img-preview">
+  </div>
+
+  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
