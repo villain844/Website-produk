@@ -32,20 +32,25 @@ function toggleMenu() {
 }
 
 // Kirim data ke SheetDB dari form
-document.getElementById("messageForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const form = e.target;
-  const data = new FormData(form);
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("messageForm");
 
-  fetch(form.action, {
-    method: "POST",
-    body: data
-  })
-  .then(res => res.json())
-  .then(() => {
-    alert("✅ Pesan berhasil dikirim!");
-    form.reset();
-    closeModal();
-  })
-  .catch(() => alert("❌ Gagal mengirim pesan. Coba lagi."));
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const data = new FormData(form);
+
+      fetch("https://sheetdb.io/api/v1/5ni7a9sbf13p3", {
+        method: "POST",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then(() => {
+          alert("✅ Pesan berhasil dikirim!");
+          form.reset();
+          closeModal();
+        })
+        .catch(() => alert("❌ Gagal mengirim pesan. Periksa koneksi."));
+    });
+  }
 });
