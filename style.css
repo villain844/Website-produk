@@ -10,44 +10,12 @@ body {
 
 a {
   text-decoration: none;
-}
-
-/* PRELOADER */
-#preloader {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-.loader-text {
-  color: #00ffff;
-  font-size: 18px;
-  font-family: 'Poppins', sans-serif;
-  animation: blink 1.2s infinite;
-}
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-/* TEKS BERJALAN */
-.marquee-text {
-  background: rgba(0, 0, 0, 0.6);
-  color: #00ffff;
-  padding: 10px;
-  font-weight: bold;
-  font-size: 16px;
-  font-family: 'Poppins', sans-serif;
-  z-index: 2;
+  color: inherit;
 }
 
 /* BANNER */
 .pengumuman-banner {
-  width: 95%;
+  width: 100%;
   max-height: 350px;
   object-fit: cover;
   display: block;
@@ -55,6 +23,7 @@ a {
   border-radius: 18px;
   box-shadow: 0 0 10px rgba(0,255,255,0.3);
 }
+
 /* PROFIL */
 .profile-header {
   display: flex;
@@ -63,7 +32,6 @@ a {
   text-align: center;
   margin: 20px auto;
 }
-
 .profile-img {
   width: 90px;
   height: 90px;
@@ -72,14 +40,12 @@ a {
   box-shadow: 0 0 10px cyan;
   margin-bottom: 10px;
 }
-
 .profile-header span {
   font-size: 16px;
   font-weight: 600;
   color: #fff;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
 }
-
 .profile-header p {
   font-size: 14px;
   color: #eee;
@@ -95,8 +61,6 @@ a {
   padding: 10px 16px;
   gap: 16px;
 }
-
-/* KARTU PRODUK */
 .product-card {
   width: calc(50% - 10px);
   background: #ffffffd0;
@@ -110,7 +74,7 @@ a {
   box-sizing: border-box;
 }
 
-/* GAMBAR PRODUK */
+/* PRODUK IMG */
 .product-img {
   width: 70px;
   height: 70px;
@@ -152,7 +116,7 @@ a {
   margin-top: auto;
 }
 
-/* TOMBOL ORDER */
+/* ORDER BUTTON */
 .order-btn {
   margin-top: 8px;
   background: teal;
@@ -171,33 +135,72 @@ a {
   box-shadow: 0 2px #0a5c5c;
 }
 
-/* MODAL GAMBAR */
+/* FORM KIRIM PESAN */
+.message-btn {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background: teal;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 1000;
+}
 .modal {
   display: none;
   position: fixed;
-  z-index: 999;
   top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.7);
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
   justify-content: center;
   align-items: center;
+  z-index: 9999;
 }
 .modal-content {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 12px;
-  box-shadow: 0 0 20px cyan;
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
 }
-.modal-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+  font-size: 14px;
+}
+.modal-content h3 {
+  margin-top: 0;
+}
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.cancel-btn {
+  background: #e53935;
   color: white;
-  font-size: 36px;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
+  box-shadow: 0 4px #c62828;
 }
+.cancel-btn:active {
+  transform: translateY(2px);
+}
+
 /* FLOATING MENU */
 .floating-menu {
   position: fixed;
@@ -208,7 +211,6 @@ a {
   flex-direction: column;
   align-items: flex-end;
 }
-
 .menu-toggle {
   width: 50px;
   height: 50px;
@@ -221,14 +223,12 @@ a {
   cursor: pointer;
   transition: 0.3s;
 }
-
 .menu-items {
   display: none;
   flex-direction: column;
   align-items: flex-end;
   margin-bottom: 10px;
 }
-
 .menu-items a {
   background: rgba(0, 128, 128, 0.95);
   color: white;
@@ -238,8 +238,7 @@ a {
   margin: 5px 0;
   font-size: 13px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  transition: background 0.3s;
 }
 .menu-items a:hover {
   background: rgba(0, 128, 128, 1);
-}
+  }
