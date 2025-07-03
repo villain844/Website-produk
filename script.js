@@ -29,3 +29,12 @@ function closeModal() {
   const form = document.getElementById("form-popup");
   if (form) form.style.display = "none";
 }
+
+function toggleMenu() {
+  const menu = document.getElementById("menuItems");
+  if (menu.style.display === "flex") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "flex";
+  }
+}
