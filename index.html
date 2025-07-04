@@ -3,66 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Villain Hosting</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <title>Villain Hosting - Kirim Pesan</title>
+
+  <!-- Font & Style -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Banner -->
-  <img src="https://files.catbox.moe/xunhl0.png" class="pengumuman-banner" alt="Pengumuman" />
+  <!-- Notifikasi -->
+  <div id="notifikasi">Mengirim pesan...</div>
 
-  <!-- Profil -->
-  <header class="profile-header">
-    <img src="https://files.catbox.moe/c7fi9o.png" alt="Profile" class="profile-img" />
-    <h2>@villain hosting</h2>
-    <p>Bismillahirrahmanirrahim</p>
+  <!-- Header -->
+  <header class="header">
+    <h1>💬 Kirim Pesan ke Admin</h1>
+    <button onclick="document.getElementById('form-popup').style.display='flex'">Tulis Pesan</button>
   </header>
 
-  <!-- Produk Grid -->
-  <main class="product-grid">
-    <div class="product-card">
-      <img src="https://files.catbox.moe/u3zzij.jpg" class="product-img" />
-      <div class="product-info">
-        <h3>ADMIN CH¹</h3>
-        <div class="price">IDR 1K</div>
-        <div class="stock">Stok: 20</div>
-        <p class="desc">Spek liat aja, kenapa 1k karena sesuai spek, harga bisa berubah.</p>
-        <button class="read-more">Lihat Selengkapnya</button>
-        <a class="order-btn" href="https://wa.me/6285134380708?text=BG+MAU+ORDER+ADMIN+CH1" target="_blank">Order</a>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <img src="https://files.catbox.moe/gbo2p7.jpg" class="product-img" />
-      <div class="product-info">
-        <h3>NOKOS INDO</h3>
-        <div class="price">IDR 4K</div>
-        <div class="stock">Stok: 1</div>
-        <p class="desc">Segera beli sebelum dibeli orang lain.</p>
-        <button class="read-more">Lihat Selengkapnya</button>
-        <a class="order-btn" href="https://wa.me/6285134380708?text=BG+MAU+ORDER+NOKOS+INDO" target="_blank">Order</a>
-      </div>
-    </div>
-  </main>
-
-  <!-- Tombol Kirim Pesan -->
-  <button class="message-btn" onclick="document.getElementById('form-popup').style.display='flex'">✉ Kirim Pesan</button>
-
-  <!-- Modal Form -->
+  <!-- Pop-up Form -->
   <div id="form-popup" class="modal" onclick="closeModal()">
-    <form onsubmit="return sendMessage(event)" class="modal-content" onclick="event.stopPropagation()">
-      <h3>Kirim Pesan ke Admin</h3>
-      <input type="text" name="nama" id="nama" placeholder="Nama Anda" required />
-      <textarea name="pesan" id="pesan" placeholder="Tulis pesan..." required></textarea>
-      <div class="modal-buttons">
-        <button type="submit" class="order-btn">Kirim</button>
-        <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
-      </div>
+    <form id="form-pesan" class="modal-content" onclick="event.stopPropagation()">
+      <h2>Form Pesan</h2>
+      <input type="text" name="nama" placeholder="Nama Anda" required />
+      <textarea name="pesan" placeholder="Tulis pesan Anda..." required></textarea>
+      <button type="submit">Kirim</button>
+      <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
     </form>
   </div>
 
+  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
