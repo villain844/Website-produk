@@ -1,20 +1,13 @@
-function closeModal() {
-  document.getElementById('form-popup').style.display = 'none';
-}
+document.getElementById("form-pesan").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-function sendMessage(event) {
-  event.preventDefault();
-  const nama = document.getElementById("nama").value.trim();
-  const pesan = document.getElementById("pesan").value.trim();
-
-  if (!nama || !pesan) {
-    alert("Nama dan pesan harus diisi!");
-    return false;
-  }
+  const notifikasi = document.getElementById("notifikasi");
+  notifikasi.textContent = "Mengirim pesan...";
+  notifikasi.style.display = "block";
 
   const data = {
-    nama: nama,
-    pesan: pesan
+    nama: this.nama.value,
+    pesan: this.pesan.value
   };
 
   fetch("https://sheetdb.io/api/v1/hkydnwssgudey", {
@@ -24,15 +17,25 @@ function sendMessage(event) {
     },
     body: JSON.stringify({ data: data })
   })
-  .then(res => res.json())
-  .then(() => {
-    alert("Pesan berhasil dikirim!");
-    closeModal();
-  })
-  .catch(err => {
-    console.error(err);
-    alert("Gagal mengirim pesan.");
-  });
+    .then(res => {
+      if (res.ok) {
+        notifikasi.textContent = "✅ Pesan berhasil dikirim!";
+        this.reset();
+        // Tutup form popup
+        document.getElementById("form-popup").style.display = "none";
+      } else {
+        notifikasi.textContent = "❌ Gagal mengirim pesan.";
+      }
+      resetNotifikasi();
+    })
+    .catch(() => {
+      notifikasi.textContent = "❗ Terjadi kesalahan jaringan.";
+      resetNotifikasi();
+    });
 
-  return false;
-}
+  function resetNotifikasi() {
+    setTimeout(() => {
+      notifikasi.style.display = "none";
+    }, 3000);
+  }
+});
