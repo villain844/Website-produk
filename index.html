@@ -47,5 +47,23 @@
 
   <!-- Script -->
   <script src="script.js"></script>
+
+<!-- Tombol buka form -->
+<button class="message-btn" onclick="document.getElementById('form-popup').style.display='flex'">✉ Kirim Pesan</button>
+
+<!-- Popup Form -->
+<div id="form-popup" class="modal" onclick="closeModal()">
+  <form id="message-form" class="modal-content" onclick="event.stopPropagation()">
+    <h3>Kirim Pesan ke Admin</h3>
+    <input type="text" name="name" placeholder="Nama Anda" required />
+    <textarea name="message" placeholder="Tulis pesan..." required></textarea>
+    <button type="submit" class="order-btn">Kirim</button>
+    <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
+  </form>
+</div>
+
+<!-- Toast container (optional, jika manual) -->
+<div id="toast-container"></div>
+  
 </body>
 </html>
