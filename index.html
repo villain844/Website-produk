@@ -3,32 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Villain Hosting - Kirim Pesan</title>
-
-  <!-- Font & Style -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <title>Villain Hosting</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- Notifikasi -->
-  <div id="notifikasi">Mengirim pesan...</div>
+  <!-- Banner -->
+  <img src="https://files.catbox.moe/xunhl0.png" alt="Pengumuman Villain Hosting" class="pengumuman-banner" onclick="showPreview(this.src)" />
 
-  <!-- Header -->
-  <header class="header">
-    <h1>💬 Kirim Pesan ke Admin</h1>
-    <button onclick="document.getElementById('form-popup').style.display='flex'">Tulis Pesan</button>
+  <!-- Profil -->
+  <header class="profile-header">
+    <img src="https://files.catbox.moe/c7fi9o.png" alt="@villain hosting" class="profile-img" onclick="showPreview(this.src)" />
+    <span>@villain hosting</span>
+    <p>Bismillahirrahmanirrahim</p>
   </header>
 
-  <!-- Pop-up Form -->
+  <!-- Produk Grid -->
+  <main class="product-grid" id="product-list">
+    <!-- Produk akan dimuat lewat JS -->
+  </main>
+
+  <!-- Tombol Kirim Pesan -->
+  <button class="message-btn" onclick="document.getElementById('form-popup').style.display='flex'">✉ Kirim Pesan</button>
+
+  <!-- Form Kirim Pesan -->
   <div id="form-popup" class="modal" onclick="closeModal()">
-    <form id="form-pesan" class="modal-content" onclick="event.stopPropagation()">
-      <h2>Form Pesan</h2>
-      <input type="text" name="nama" placeholder="Nama Anda" required />
-      <textarea name="pesan" placeholder="Tulis pesan Anda..." required></textarea>
-      <button type="submit">Kirim</button>
+    <form action="https://formspree.io/f/xnnvrqqv" method="POST" class="modal-content" onclick="event.stopPropagation()">
+      <h3>Kirim Pesan ke Admin</h3>
+      <input type="text" name="name" placeholder="Nama Anda" required>
+      <textarea name="message" placeholder="Tulis pesan..." required></textarea>
+      <button type="submit" class="order-btn">Kirim</button>
       <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
     </form>
+  </div>
+
+  <!-- Modal Gambar -->
+  <div id="img-modal" class="modal" onclick="closeModal()">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="img-preview" />
   </div>
 
   <!-- Script -->
