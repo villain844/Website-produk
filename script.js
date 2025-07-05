@@ -54,3 +54,48 @@ function closeModal() {
   const form = document.getElementById('form-popup');
   if (form) form.style.display = 'none';
 }
+
+function closeModal() {
+  document.getElementById("img-modal")?.style.display = "none";
+  document.getElementById("form-popup")?.style.display = "none";
+}
+
+function showToast(message) {
+  const toast = document.createElement("div");
+  toast.textContent = message;
+  toast.className = "toast-message";
+  document.body.appendChild(toast);
+  setTimeout(() => toast.classList.add("show"), 100);
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+// Kirim form ke Formspree
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("message-form");
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      try {
+        const res = await fetch("https://formspree.io/f/xnnvrqqv", {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: formData
+        });
+
+        if (res.ok) {
+          showToast("Pesan berhasil dikirim!");
+          form.reset();
+          closeModal();
+        } else {
+          showToast("Gagal mengirim pesan!");
+        }
+      } catch (err) {
+        showToast("Terjadi kesalahan.");
+      }
+    });
+  }
+});
