@@ -1,126 +1,219 @@
-/* === GLOBAL === */
+/* ========== GENERAL ========== */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
-  padding: 0;
-  background: url("https://files.catbox.moe/28c7fi.jpg") no-repeat center center fixed;
+  background: url('https://files.catbox.moe/28c7fi.jpg') no-repeat center center fixed;
   background-size: cover;
-  color: #fff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-top: 60px;
+  color: white;
 }
 
-/* === HEADER === */
-.header {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 15px 25px;
-  border-radius: 20px;
-  font-size: 1.4em;
-  font-weight: bold;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
-  margin-bottom: 30px;
-  backdrop-filter: blur(6px);
+/* ========== BANNER ========== */
+.pengumuman-banner {
+  display: block;
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 20px;
+}
+
+/* ========== PROFILE ========== */
+.profile-header {
   text-align: center;
+  margin-top: -20px;
 }
 
-/* === FORM POPUP === */
-#form-popup {
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid cyan;
+  object-fit: cover;
+  box-shadow: 0 0 12px cyan;
+}
+
+.profile-header span {
+  display: block;
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.profile-header p {
+  font-size: 14px;
+  color: #eee;
+  margin: 4px 0 20px;
+}
+
+/* ========== PRODUCT ========== */
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 16px;
+}
+
+.product-card {
+  width: 45%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  padding: 14px;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+/* ========== PRODUCT INFO ========== */
+.product-info h3 {
+  font-size: 16px;
+  margin: 6px 0;
+  color: cyan;
+}
+
+.price, .stock {
+  font-size: 13px;
+  margin: 2px 0;
+  color: #ddd;
+}
+
+.desc {
+  font-size: 12px;
+  margin: 6px 0;
+  color: #ccc;
+  min-height: 36px;
+}
+
+.read-more {
+  background: none;
+  border: none;
+  color: cyan;
+  cursor: pointer;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+/* ========== BUTTON ORDER ========== */
+.order-btn {
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.3s;
+  border: none;
+  margin-top: 5px;
+}
+
+.order-btn:hover {
+  transform: scale(0.98);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+}
+
+/* ========== MODAL PREVIEW IMAGE ========== */
+.modal {
+  display: none;
   position: fixed;
-  top: 0;
-  left: 0;
+  z-index: 999;
+  left: 0; top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.7);
-  display: none;
+  background-color: rgba(0,0,0,0.8);
   align-items: center;
   justify-content: center;
-  z-index: 1000;
 }
 
 .modal-content {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 25px;
-  border-radius: 15px;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ========== KIRIM PESAN ========== */
+.message-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #0072ff;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 50px;
+  font-size: 16px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.modal-content form,
+.modal-content {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 16px;
   width: 90%;
   max-width: 400px;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  position: relative;
+  color: white;
 }
 
-/* === FORM ELEMENTS === */
-input, textarea {
-  padding: 12px;
-  border-radius: 10px;
+.modal-content h3 {
+  margin-top: 0;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
   border: none;
-  outline: none;
-  background: #111;
-  color: #fff;
-  font-size: 1em;
-  box-shadow: inset 0 0 6px rgba(0,255,255,0.2);
-  resize: none;
+  font-family: 'Poppins', sans-serif;
 }
 
-input:focus, textarea:focus {
-  box-shadow: 0 0 12px rgba(0,255,255,0.6);
-}
-
-/* === BUTTONS === */
-button {
-  background: #00ccff;
-  color: #fff;
-  padding: 12px;
-  border: none;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 1em;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 204, 255, 0.6);
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  background: #0099cc;
-  transform: scale(1.05);
-}
-
-/* === CANCEL BUTTON (MERAH) === */
 .cancel-btn {
   background: crimson;
-  margin-top: 5px;
-  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.6);
+  color: white;
+  margin-top: 8px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: block;
 }
 
-.cancel-btn:hover {
-  background: darkred;
+/* ========== FOOTER ========== */
+.social-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 22px;
 }
 
-/* === NOTIFIKASI === */
-#notifikasi {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 255, 255, 0.9);
-  color: #000;
-  padding: 12px 20px;
-  border-radius: 15px;
-  font-weight: bold;
-  box-shadow: 0 0 20px rgba(0,255,255,0.5);
-  z-index: 2000;
-  display: none;
-  animation: fadeInOut 3s forwards;
-}
-
-@keyframes fadeInOut {
-  0% {opacity: 0;}
-  10% {opacity: 1;}
-  90% {opacity: 1;}
-  100% {opacity: 0;}
+.social-footer a {
+  margin: 0 10px;
+  color: cyan;
 }
