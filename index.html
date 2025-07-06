@@ -11,7 +11,7 @@
 <body>
 
   <!-- Banner -->
-  <img src="https://files.catbox.moe/xunhl0.png" alt="Pengumuman Villain Hosting" class="pengumuman-banner" onclick="showPreview(this.src)" />
+  <img id="dynamic-banner" alt="Pengumuman Villain Hosting" class="pengumuman-banner" onclick="showPreview(this.src)" />
 
   <!-- Profil -->
   <header class="profile-header">
@@ -20,60 +20,32 @@
     <p>Bismillahirrahmanirrahim</p>
   </header>
 
-  <!-- Produk -->
-  <main class="product-grid">
-    <div class="product-card">
-      <img src="https://files.catbox.moe/u3zzij.jpg" class="product-img" onclick="showPreview(this.src)" />
-      <div class="product-info">
-        <h3>ADMIN CH¹</h3>
-        <div class="price">IDR 1K</div>
-        <div class="stock">Stok: 20</div>
-        <p class="desc">
-          <span class="short-text">Spek liat aja, kenapa 1k karena sesuai spek...</span>
-          <span class="full-text" style="display:none;">Spek liat aja, kenapa 1k karena sesuai spek, harga bisa berubah.</span>
-        </p>
-        <button class="read-more" onclick="toggleDesc(this)">Lihat Selengkapnya</button>
-        <a class="order-btn" href="https://wa.me/6285134380708?text=BG+MAU+ORDER+ADMIN+CH1" target="_blank">Order</a>
-      </div>
-    </div>
+  <!-- Produk Grid -->
+  <main class="product-grid" id="produk-container"></main>
 
-    <div class="product-card">
-      <img src="https://files.catbox.moe/gbo2p7.jpg" class="product-img" onclick="showPreview(this.src)" />
-      <div class="product-info">
-        <h3>NOKOS INDO</h3>
-        <div class="price">IDR 4K</div>
-        <div class="stock">Stok: 1</div>
-        <p class="desc">
-          <span class="short-text">Segera beli sebelum dibeli orang...</span>
-          <span class="full-text" style="display:none;">Segera beli sebelum dibeli orang lain</span>
-        </p>
-        <button class="read-more" onclick="toggleDesc(this)">Lihat Selengkapnya</button>
-        <a class="order-btn" href="https://wa.me/6285134380708?text=BG+MAU+ORDER+NOKOS+INDO" target="_blank">Order</a>
-      </div>
-    </div>
-  </main>
-
-  <!-- Tombol Kirim Pesan -->
-  <button class="floating-btn" onclick="openForm()">✉</button>
-
-  <!-- Modal Form Kirim Pesan -->
-  <div id="form-modal" class="form-modal" onclick="closeForm()">
-    <div class="form-card" onclick="event.stopPropagation()">
-      <button class="close-btn" onclick="closeForm()">×</button>
-      <h3>Kirim Pesan ke Admin</h3>
-      <form action="https://formspree.io/f/xnnvrqqv" method="POST">
-        <input type="text" name="name" placeholder="Nama Anda" required />
-        <textarea name="message" placeholder="Tulis pesan Anda..." required></textarea>
-        <button type="submit" class="send-btn">Kirim</button>
-      </form>
-    </div>
-  </div>
+  <!-- Form Kirim Pesan -->
+  <section class="form-section">
+    <h3>Kirim Pesan ke Admin</h3>
+    <form id="pesan-form">
+      <input type="text" name="nama" placeholder="Nama Anda" required />
+      <textarea name="pesan" placeholder="Tulis pesan Anda..." required></textarea>
+      <button type="submit" class="send-btn">Kirim Pesan</button>
+    </form>
+    <p id="notif" class="notif-pesan"></p>
+  </section>
 
   <!-- Modal Preview Gambar -->
   <div id="img-modal" class="modal" onclick="closeModal()">
     <span class="modal-close">&times;</span>
-    <img class="modal-content" id="img-preview">
+    <img class="modal-content" id="img-preview" />
   </div>
+
+  <!-- Footer -->
+  <footer class="social-footer">
+    <a href="https://wa.me/6285134380708"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.tiktok.com/@villain_hosting"><i class="fab fa-tiktok"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb50GTCLdQeUtFhkEo39"><i class="fas fa-users"></i></a>
+  </footer>
 
   <script src="script.js"></script>
 </body>
