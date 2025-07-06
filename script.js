@@ -1,8 +1,10 @@
-const API = "https://sheetdb.io/api/v1/vmf2cfpzd8dpr";
+// Konfigurasi API
+const API_PRODUK = "https://sheetdb.io/api/v1/vmf2cfpzd8dpr";
+const API_PESAN = "https://sheetdb.io/api/v1/hkydnwssgudey";
 
-// Ambil dan tampilkan produk dari API
+// Tampilkan produk dari API
 document.addEventListener("DOMContentLoaded", () => {
-  fetch(API)
+  fetch(API_PRODUK)
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById("product-list");
@@ -11,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         container.innerHTML = "<p style='text-align:center;'>Belum ada produk.</p>";
         return;
       }
+
       data.forEach(p => {
         const card = document.createElement("div");
         card.className = "product-card";
@@ -29,20 +32,38 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>`;
         container.appendChild(card);
       });
+    })
+    .catch(err => {
+      console.error("Gagal mengambil produk:", err);
     });
 });
 
-// Kirim pesan ke SheetDB
+// Kirim pesan dengan ID otomatis
 document.getElementById("pesanForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const nama = e.target.nama.value;
-  const pesan = e.target.pesan.value;
+  const nama = e.target.nama.value.trim();
+  const pesan = e.target.pesan.value.trim();
+
+  if (!nama || !pesan) {
+    showToast("Isi semua kolom!", "#ffaa00");
+    return;
+  }
+
   try {
-    const res = await fetch("https://sheetdb.io/api/v1/hkydnwssgudey", {
+    // Ambil semua data pesan untuk menentukan ID terakhir
+    const resGet = await fetch(API_PESAN);
+    const data = await resGet.json();
+    const idBaru = (data.length + 1).toString();
+
+    // Kirim pesan
+    const res = await fetch(API_PESAN, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ data: [{ nama, pesan }] })
+      body: JSON.stringify({
+        data: [{ id: idBaru, nama, pesan }]
+      })
     });
+
     if (res.ok) {
       showToast("Pesan berhasil dikirim!");
       e.target.reset();
@@ -50,10 +71,22 @@ document.getElementById("pesanForm")?.addEventListener("submit", async (e) => {
     } else {
       showToast("Gagal mengirim pesan", "#ff5555");
     }
-  } catch {
-    showToast("Terjadi kesalahan jaringan", "#ff4444");
+  } catch (err) {
+    console.error("Gagal kirim pesan:", err);
+    showToast("Kesalahan jaringan", "#ff4444");
   }
 });
+
+// Toggle deskripsi "lihat selengkapnya"
+function toggleDesc(button) {
+  const desc = button.previousElementSibling;
+  const shortText = desc.querySelector(".short-text");
+  const fullText = desc.querySelector(".full-text");
+  const show = fullText.style.display === "none";
+  fullText.style.display = show ? "inline" : "none";
+  shortText.style.display = show ? "none" : "inline";
+  button.textContent = show ? "Sembunyikan" : "Lihat Selengkapnya";
+}
 
 // Modal preview gambar
 function showPreview(src) {
@@ -63,21 +96,12 @@ function showPreview(src) {
   preview.src = src;
 }
 
-// Tutup modal
+// Tutup modal gambar & pesan
 function closeModal() {
-  document.getElementById("form-popup").style.display = "none";
-  document.getElementById("img-modal").style.display = "none";
-}
-
-// Toggle deskripsi produk
-function toggleDesc(btn) {
-  const desc = btn.previousElementSibling;
-  const shortText = desc.querySelector(".short-text");
-  const fullText = desc.querySelector(".full-text");
-  const show = fullText.style.display === "none";
-  fullText.style.display = show ? "inline" : "none";
-  shortText.style.display = show ? "none" : "inline";
-  btn.textContent = show ? "Sembunyikan" : "Lihat Selengkapnya";
+  const imgModal = document.getElementById("img-modal");
+  const formPopup = document.getElementById("form-popup");
+  if (imgModal) imgModal.style.display = "none";
+  if (formPopup) formPopup.style.display = "none";
 }
 
 // Notifikasi toast
