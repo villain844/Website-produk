@@ -5,22 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Villain Hosting</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+
+  <!-- Text Berjalan -->
+  <marquee scrollamount="5" class="running-text">SELAMAT DATANG DI WEBSITE SAYA</marquee>
+
   <!-- Banner -->
-  <img src="https://files.catbox.moe/xunhl0.png" alt="Banner" class="banner" onclick="showPreview(this.src)" />
+  <img src="https://files.catbox.moe/xunhl0.png" alt="Pengumuman Villain Hosting" class="pengumuman-banner" onclick="showPreview(this.src)" />
 
   <!-- Profil -->
-  <div class="profile">
-    <img src="https://files.catbox.moe/c7fi9o.png" alt="Profil" onclick="showPreview(this.src)" />
-    <h2>@villain hosting</h2>
+  <header class="profile-header">
+    <img src="https://files.catbox.moe/c7fi9o.png" alt="@villain hosting" class="profile-img" onclick="showPreview(this.src)" />
+    <span>@villain hosting</span>
     <p>Bismillahirrahmanirrahim</p>
-  </div>
+  </header>
 
   <!-- Produk -->
   <main id="product-list" class="product-grid">
-    <!-- Produk dari API akan tampil di sini -->
+    <p style="text-align:center;">Memuat produk...</p>
   </main>
 
   <!-- Tombol Kirim Pesan -->
@@ -30,18 +35,27 @@
   <div id="form-popup" class="modal" onclick="closeModal()">
     <form id="pesanForm" class="modal-content" onclick="event.stopPropagation()">
       <h3>Kirim Pesan ke Admin</h3>
-      <input type="text" name="nama" placeholder="Nama Anda" required />
+      <input type="text" name="nama" placeholder="Nama Anda" required>
       <textarea name="pesan" placeholder="Tulis pesan..." required></textarea>
-      <button type="submit" class="order-btn">Kirim</button>
-      <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
+      <div class="form-buttons">
+        <button type="submit" class="order-btn">Kirim</button>
+        <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
+      </div>
     </form>
   </div>
 
   <!-- Modal Preview Gambar -->
   <div id="img-modal" class="modal" onclick="closeModal()">
-    <span class="modal-close">&times;</span>
-    <img class="modal-content" id="img-preview" />
+    <span class="modal-close">×</span>
+    <img class="modal-content" id="img-preview">
   </div>
+
+  <!-- Footer Sosial -->
+  <footer class="social-footer">
+    <a href="https://wa.me/6285134380708"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.tiktok.com/@yourtiktok"><i class="fab fa-tiktok"></i></a>
+    <a href="https://whatsapp.com/channel/yourchannel"><i class="fas fa-users"></i></a>
+  </footer>
 
   <script src="script.js"></script>
 </body>
