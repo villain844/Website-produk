@@ -1,101 +1,75 @@
-/* ========== GENERAL ========== */
 body {
-  font-family: 'Poppins', sans-serif;
   margin: 0;
+  font-family: 'Poppins', sans-serif;
   background: url('https://files.catbox.moe/28c7fi.jpg') no-repeat center center fixed;
   background-size: cover;
-  color: white;
+  color: #fff;
 }
 
-/* ========== BANNER ========== */
-.pengumuman-banner {
-  display: block;
-  width: 100%;
+.banner {
   max-height: 350px;
+  width: 100%;
   object-fit: cover;
-  border-radius: 0 0 20px 20px;
+  border-radius: 16px;
   margin-bottom: 20px;
 }
 
-/* ========== PROFILE ========== */
-.profile-header {
+.profile {
   text-align: center;
-  margin-top: -20px;
+  margin-bottom: 20px;
 }
 
-.profile-img {
+.profile img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 3px solid cyan;
-  object-fit: cover;
+  border: 2px solid cyan;
   box-shadow: 0 0 12px cyan;
 }
 
-.profile-header span {
-  display: block;
-  margin-top: 8px;
-  font-weight: bold;
-  font-size: 18px;
+.profile h2 {
+  margin: 10px 0 4px;
 }
 
-.profile-header p {
-  font-size: 14px;
-  color: #eee;
-  margin: 4px 0 20px;
-}
-
-/* ========== PRODUCT ========== */
 .product-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   gap: 20px;
-  padding: 0 16px;
+  padding: 0 20px;
 }
 
 .product-card {
   width: 45%;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 18px;
-  padding: 14px;
-  text-align: center;
-  box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
-  transition: 0.3s;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  padding: 10px;
+  color: #fff;
+  box-shadow: 0 0 12px cyan;
 }
 
-.product-card:hover {
-  transform: translateY(-4px);
-}
-
-.product-img {
+.product-card img {
   width: 70px;
   height: 70px;
-  object-fit: cover;
   border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
-  margin-bottom: 8px;
-  cursor: pointer;
+  display: block;
+  margin: auto;
+  box-shadow: 0 0 8px cyan;
 }
 
-/* ========== PRODUCT INFO ========== */
-.product-info h3 {
-  font-size: 16px;
-  margin: 6px 0;
-  color: cyan;
+.product-info {
+  text-align: center;
 }
 
 .price, .stock {
-  font-size: 13px;
-  margin: 2px 0;
-  color: #ddd;
+  font-size: 14px;
+  margin: 4px 0;
 }
 
 .desc {
   font-size: 12px;
   margin: 6px 0;
-  color: #ccc;
-  min-height: 36px;
 }
 
 .read-more {
@@ -103,151 +77,76 @@ body {
   border: none;
   color: cyan;
   cursor: pointer;
-  font-size: 13px;
-  margin-bottom: 8px;
-}
-
-/* ========== BUTTON ORDER ========== */
-.order-btn {
-  background: linear-gradient(to right, #00c6ff, #0072ff);
-  color: white;
-  padding: 10px 16px;
-  border-radius: 10px;
   font-weight: bold;
-  text-decoration: none;
-  display: inline-block;
-  transition: 0.3s;
+  font-size: 13px;
+}
+
+.order-btn {
+  display: block;
+  margin: 10px auto 0;
+  padding: 8px 18px;
+  background: cyan;
+  color: black;
   border: none;
-  margin-top: 5px;
-}
-
-.order-btn:hover {
-  transform: scale(0.98);
-  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-}
-
-/* ========== MODAL PREVIEW IMAGE ========== */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0; top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.8);
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-content {
-  max-width: 90%;
-  max-height: 90%;
   border-radius: 12px;
-}
-
-.modal-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  color: white;
-  font-size: 30px;
   font-weight: bold;
   cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,255,255,0.4);
 }
 
-/* ========== KIRIM PESAN ========== */
 .message-btn {
   position: fixed;
   bottom: 20px;
-  right: 20px;
-  background: #0072ff;
-  color: white;
-  padding: 12px 16px;
-  border-radius: 50px;
-  font-size: 16px;
+  left: 20px;
+  background: #00c6ff;
+  color: #fff;
   border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: bold;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   cursor: pointer;
   z-index: 1000;
 }
 
-.modal-content form,
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(5px);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
 .modal-content {
-  background: rgba(255, 255, 255, 0.08);
+  background: #fff;
   padding: 20px;
   border-radius: 16px;
+  color: #000;
   width: 90%;
   max-width: 400px;
-  color: white;
 }
 
-.modal-content h3 {
-  margin-top: 0;
-}
-
-.modal-content input,
-.modal-content textarea {
+.modal-content input, .modal-content textarea {
   width: 100%;
+  margin: 8px 0;
   padding: 10px;
-  margin-bottom: 10px;
   border-radius: 8px;
-  border: none;
-  font-family: 'Poppins', sans-serif;
+  border: 1px solid #ccc;
 }
 
 .cancel-btn {
-  background: crimson;
-  color: white;
-  margin-top: 8px;
-  padding: 8px 14px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  display: block;
-}
-
-/* ========== FOOTER ========== */
-.social-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 22px;
-}
-
-.social-footer a {
-  margin: 0 10px;
-  color: cyan;
-}
-
-/* Notifikasi toast */
-.toast-message {
-  position: fixed;
-  top: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #00c6ff;
-  color: #fff;
-  padding: 14px 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  font-weight: bold;
-  z-index: 9999;
-  opacity: 0;
-  transition: all 0.4s ease;
-}
-.toast-message.show {
-  top: 30px;
-  opacity: 1;
-}
-
-/* Tombol Batal */
-.cancel-btn {
-  background: #ff3b3b;
+  margin-top: 10px;
+  width: 100%;
+  background: red;
   color: white;
   border: none;
-  padding: 10px 18px;
-  margin-top: 8px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 10px;
   font-weight: bold;
+  box-shadow: 0 4px 8px rgba(255,0,0,0.5);
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.4);
 }
