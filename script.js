@@ -65,3 +65,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// Kirim pesan ke SheetDB API
+const formEl = document.getElementById("kirim-form");
+if (formEl) {
+  formEl.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const nama = this.nama.value.trim();
+    const pesan = this.pesan.value.trim();
+
+    if (!nama || !pesan) return;
+
+    fetch("https://sheetdb.io/api/v1/hkydnwssgudey", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data: [
+          {
+            nama: nama,
+            pesan: pesan,
+          },
+        ],
+      }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        alert("Pesan berhasil dikirim!");
+        this.reset();
+        closeModal();
+      })
+      .catch(() => {
+        alert("Gagal mengirim pesan. Silakan coba lagi.");
+      });
+  });
+}
