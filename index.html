@@ -10,8 +10,13 @@
 </head>
 <body>
 
+  <!-- Loading -->
+  <div class="loading-screen" id="loading">
+    <p>Tunggu sebentar lagi proses...</p>
+  </div>
+
   <!-- Text Berjalan -->
-  <marquee scrollamount="5" class="running-text">SELAMAT DATANG DI WEBSITE SAYA</marquee>
+  <marquee class="marquee">SELAMAT DATANG DI WEBSITE SAYA</marquee>
 
   <!-- Banner -->
   <img src="https://files.catbox.moe/xunhl0.png" alt="Pengumuman Villain Hosting" class="pengumuman-banner" onclick="showPreview(this.src)" />
@@ -24,8 +29,8 @@
   </header>
 
   <!-- Produk -->
-  <main id="product-list" class="product-grid">
-    <p style="text-align:center;">Memuat produk...</p>
+  <main class="product-grid" id="product-list">
+    <!-- Produk akan dimuat dari JavaScript -->
   </main>
 
   <!-- Tombol Kirim Pesan -->
@@ -33,10 +38,10 @@
 
   <!-- Form Kirim Pesan -->
   <div id="form-popup" class="modal" onclick="closeModal()">
-    <form id="pesanForm" class="modal-content" onclick="event.stopPropagation()">
+    <form action="https://formspree.io/f/xnnvrqqv" method="POST" class="modal-content" onclick="event.stopPropagation()">
       <h3>Kirim Pesan ke Admin</h3>
-      <input type="text" name="nama" placeholder="Nama Anda" required>
-      <textarea name="pesan" placeholder="Tulis pesan..." required></textarea>
+      <input type="text" name="name" placeholder="Nama Anda" required />
+      <textarea name="message" placeholder="Tulis pesan..." required></textarea>
       <div class="form-buttons">
         <button type="submit" class="order-btn">Kirim</button>
         <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
@@ -46,17 +51,19 @@
 
   <!-- Modal Preview Gambar -->
   <div id="img-modal" class="modal" onclick="closeModal()">
-    <span class="modal-close">×</span>
-    <img class="modal-content" id="img-preview">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="img-preview" />
   </div>
 
   <!-- Footer Sosial -->
   <footer class="social-footer">
     <a href="https://wa.me/6285134380708"><i class="fab fa-whatsapp"></i></a>
     <a href="https://www.tiktok.com/@yourtiktok"><i class="fab fa-tiktok"></i></a>
-    <a href="https://whatsapp.com/channel/0029VbBDbSs8aKvQ0V3oGd1P"><i class="fas fa-users"></i></a>
+    <a href="https://whatsapp.com/channel/yourchannel"><i class="fas fa-users"></i></a>
   </footer>
 
+  <!-- Script -->
   <script src="script.js"></script>
+
 </body>
 </html>
