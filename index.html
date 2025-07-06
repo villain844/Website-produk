@@ -5,24 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Villain Hosting</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-
   <!-- Banner -->
-  <img src="https://files.catbox.moe/xunhl0.png" alt="Pengumuman Villain Hosting" class="pengumuman-banner" onclick="showPreview(this.src)" />
+  <img src="https://files.catbox.moe/xunhl0.png" alt="Banner" class="banner" onclick="showPreview(this.src)" />
 
   <!-- Profil -->
-  <header class="profile-header">
-    <img src="https://files.catbox.moe/c7fi9o.png" alt="@villain hosting" class="profile-img" onclick="showPreview(this.src)" />
-    <span>@villain hosting</span>
+  <div class="profile">
+    <img src="https://files.catbox.moe/c7fi9o.png" alt="Profil" onclick="showPreview(this.src)" />
+    <h2>@villain hosting</h2>
     <p>Bismillahirrahmanirrahim</p>
-  </header>
+  </div>
 
-  <!-- Produk Grid -->
-  <main class="product-grid" id="product-list">
-    <!-- Produk akan dimuat lewat JS -->
+  <!-- Produk -->
+  <main id="product-list" class="product-grid">
+    <!-- Produk dari API akan tampil di sini -->
   </main>
 
   <!-- Tombol Kirim Pesan -->
@@ -30,40 +28,21 @@
 
   <!-- Form Kirim Pesan -->
   <div id="form-popup" class="modal" onclick="closeModal()">
-    <form action="https://formspree.io/f/xnnvrqqv" method="POST" class="modal-content" onclick="event.stopPropagation()">
+    <form id="pesanForm" class="modal-content" onclick="event.stopPropagation()">
       <h3>Kirim Pesan ke Admin</h3>
-      <input type="text" name="name" placeholder="Nama Anda" required>
-      <textarea name="message" placeholder="Tulis pesan..." required></textarea>
+      <input type="text" name="nama" placeholder="Nama Anda" required />
+      <textarea name="pesan" placeholder="Tulis pesan..." required></textarea>
       <button type="submit" class="order-btn">Kirim</button>
       <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
     </form>
   </div>
 
-  <!-- Modal Gambar -->
+  <!-- Modal Preview Gambar -->
   <div id="img-modal" class="modal" onclick="closeModal()">
     <span class="modal-close">&times;</span>
     <img class="modal-content" id="img-preview" />
   </div>
 
-  <!-- Script -->
   <script src="script.js"></script>
-
-<!-- Tombol buka form -->
-<button class="message-btn" onclick="document.getElementById('form-popup').style.display='flex'">✉ Kirim Pesan</button>
-
-<!-- Popup Form -->
-<div id="form-popup" class="modal" onclick="closeModal()">
-  <form id="message-form" class="modal-content" onclick="event.stopPropagation()">
-    <h3>Kirim Pesan ke Admin</h3>
-    <input type="text" name="name" placeholder="Nama Anda" required />
-    <textarea name="message" placeholder="Tulis pesan..." required></textarea>
-    <button type="submit" class="order-btn">Kirim</button>
-    <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
-  </form>
-</div>
-
-<!-- Toast container (optional, jika manual) -->
-<div id="toast-container"></div>
-  
 </body>
 </html>
