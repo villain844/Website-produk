@@ -202,9 +202,9 @@ form.modal-content {
   background: #111;
   color: #fff;
   padding: 20px;
-  border-radius: 16px;
+  border-radius: 12px;
   width: 90%;
-  max-width: 400px;
+  max-width: 560px;
   display: flex;
   flex-direction: column;
   gap: 10px;
