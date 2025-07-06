@@ -5,38 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Villain Hosting</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
+  <marquee class="welcome-text">SELAMAT DATANG DI WEBSITE SAYA</marquee>
+
   <!-- Banner -->
-  <img src="https://files.catbox.moe/xunhl0.png" alt="Pengumuman Villain Hosting" class="pengumuman-banner" onclick="showPreview(this.src)" />
+  <img src="https://files.catbox.moe/xunhl0.png" alt="Banner" class="banner" onclick="showPreview(this.src)" />
 
   <!-- Profil -->
   <header class="profile-header">
-    <img src="https://files.catbox.moe/c7fi9o.png" alt="@villain hosting" class="profile-img" onclick="showPreview(this.src)" />
+    <img src="https://files.catbox.moe/c7fi9o.png" alt="profile" class="profile-img" onclick="showPreview(this.src)" />
     <span>@villain hosting</span>
     <p>Bismillahirrahmanirrahim</p>
   </header>
 
-  <!-- Kontainer Produk -->
-  <main>
-    <div id="product-container" class="product-grid"></div>
-  </main>
+  <!-- Produk -->
+  <main class="product-grid" id="product-list"></main>
 
-  <!-- Form Kirim Pesan -->
+  <!-- Tombol Kirim Pesan -->
   <button class="message-btn" onclick="document.getElementById('form-popup').style.display='flex'">✉ Kirim Pesan</button>
+
+  <!-- Modal Kirim Pesan -->
   <div id="form-popup" class="modal" onclick="closeModal()">
     <form action="https://formspree.io/f/xnnvrqqv" method="POST" class="modal-content" onclick="event.stopPropagation()">
       <h3>Kirim Pesan ke Admin</h3>
-      <input type="text" name="name" placeholder="Nama Anda" required />
+      <input type="text" name="name" placeholder="Nama Anda" required>
       <textarea name="message" placeholder="Tulis pesan..." required></textarea>
       <button type="submit" class="order-btn">Kirim</button>
+      <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
     </form>
   </div>
 
-  <!-- Modal Preview Gambar -->
+  <!-- Modal Gambar -->
   <div id="img-modal" class="modal" onclick="closeModal()">
     <span class="modal-close">&times;</span>
     <img class="modal-content" id="img-preview" />
@@ -49,7 +52,6 @@
     <a href="https://whatsapp.com/channel/0029Vb50GTCLdQeUtFhkEo39"><i class="fas fa-users"></i></a>
   </footer>
 
-  <!-- SCRIPT -->
   <script src="script.js"></script>
 </body>
 </html>
