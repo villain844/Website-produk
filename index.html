@@ -7,16 +7,26 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style id="bg-style"></style>
+  <script>
+    // Atur background dari SheetDB
+    fetch("https://sheetdb.io/api/v1/wdiag49r7wv0s")
+      .then(res => res.json())
+      .then(data => {
+        const bgUrl = data[0].background;
+        document.getElementById("bg-style").textContent = `
+          body {
+            background: url('${bgUrl}') no-repeat center center fixed;
+            background-size: cover;
+          }
+        `;
+      })
+      .catch(err => {
+        console.error("Gagal mengambil background:", err);
+      });
+  </script>
 </head>
 <body>
-
-  <!-- Loading -->
-  <div class="loading-screen" id="loading">
-    <p>Tunggu sebentar lagi proses...</p>
-  </div>
-
-  <!-- Text Berjalan -->
-  <marquee class="marquee">SELAMAT DATANG DI WEBSITE SAYA</marquee>
 
   <!-- Banner -->
   <img src="https://files.catbox.moe/xunhl0.png" alt="Pengumuman Villain Hosting" class="pengumuman-banner" onclick="showPreview(this.src)" />
@@ -28,42 +38,36 @@
     <p>Bismillahirrahmanirrahim</p>
   </header>
 
-  <!-- Produk -->
-  <main class="product-grid" id="product-list">
-    <!-- Produk akan dimuat dari JavaScript -->
+  <!-- Produk dari API -->
+  <main id="produk-container" class="product-grid">
+    <!-- Data produk akan dimuat via JavaScript -->
   </main>
 
-  <!-- Tombol Kirim Pesan -->
+  <!-- Form Kirim Pesan -->
   <button class="message-btn" onclick="document.getElementById('form-popup').style.display='flex'">✉ Kirim Pesan</button>
 
-  <!-- Form Kirim Pesan -->
   <div id="form-popup" class="modal" onclick="closeModal()">
     <form action="https://formspree.io/f/xnnvrqqv" method="POST" class="modal-content" onclick="event.stopPropagation()">
       <h3>Kirim Pesan ke Admin</h3>
-      <input type="text" name="name" placeholder="Nama Anda" required />
+      <input type="text" name="name" placeholder="Nama Anda" required>
       <textarea name="message" placeholder="Tulis pesan..." required></textarea>
-      <div class="form-buttons">
-        <button type="submit" class="order-btn">Kirim</button>
-        <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
-      </div>
+      <button type="submit" class="order-btn">Kirim</button>
     </form>
   </div>
 
   <!-- Modal Preview Gambar -->
   <div id="img-modal" class="modal" onclick="closeModal()">
-    <span class="modal-close">&times;</span>
-    <img class="modal-content" id="img-preview" />
+    <span class="modal-close">×</span>
+    <img class="modal-content" id="img-preview">
   </div>
 
   <!-- Footer Sosial -->
   <footer class="social-footer">
     <a href="https://wa.me/6285134380708"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://www.tiktok.com/@villain_hosting"><i class="fab fa-tiktok"></i></a>
-    <a href="https://whatsapp.com/channel/0029VbBDbSs8aKvQ0V3oGd1P"><i class="fas fa-users"></i></a>
+    <a href="https://www.tiktok.com/@yourtiktok"><i class="fab fa-tiktok"></i></a>
+    <a href="https://whatsapp.com/channel/yourchannel"><i class="fas fa-users"></i></a>
   </footer>
 
-  <!-- Script -->
   <script src="script.js"></script>
-
 </body>
 </html>
