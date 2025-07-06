@@ -47,12 +47,29 @@ function closeModal() {
 }
 
 // Deskripsi Toggle
-function toggleDesc(btn) {
-  const desc = btn.parentElement.querySelector(".desc");
-  const shortText = desc.querySelector(".short-text");
-  const fullText = desc.querySelector(".full-text");
-  const expanded = fullText.style.display === "inline";
-  shortText.style.display = expanded ? "inline" : "none";
-  fullText.style.display = expanded ? "none" : "inline";
-  btn.textContent = expanded ? "Lihat Selengkapnya" : "Sembunyikan";
+function toggleDesc(button) {
+  const desc = button.previousElementSibling;
+  const shortText = desc.querySelector('.short-text');
+  const fullText = desc.querySelector('.full-text');
+  const show = fullText.style.display === 'none';
+  fullText.style.display = show ? 'inline' : 'none';
+  shortText.style.display = show ? 'none' : 'inline';
+  button.textContent = show ? 'Sembunyikan' : 'Lihat Selengkapnya';
+}
+
+function showPreview(src) {
+  const modal = document.getElementById('img-modal');
+  const preview = document.getElementById('img-preview');
+  modal.style.display = 'flex';
+  preview.src = src;
+}
+
+function closeModal() {
+  document.getElementById('img-modal').style.display = 'none';
+  const form = document.getElementById('form-modal');
+  if (form) form.style.display = 'none';
+}
+
+function openForm() {
+  document.getElementById("form-modal").style.display = "flex";
 }
