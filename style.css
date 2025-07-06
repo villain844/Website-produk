@@ -34,13 +34,19 @@ body {
   margin: 20px 0;
 }
 
+/* Profil */
+.profile-header {
+  text-align: center;
+  margin: 20px 0;
+}
+
 .profile-img {
-  width: 100px;
-  height: 100px;
+  width: 80px;  /* lebih kecil */
+  height: 80px;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 50%;  /* agar bulat sempurna */
   border: 3px solid #00ffff;
-  box-shadow: 0 0 12px #00ffff;
+  box-shadow: 0 0 10px #00ffff;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
