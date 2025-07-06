@@ -2,26 +2,11 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Villain Hosting</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <style id="bg-style"></style>
-  <script>
-    // Background dari SheetDB
-    fetch("https://sheetdb.io/api/v1/wdiag49r7wv0s")
-      .then(res => res.json())
-      .then(data => {
-        const bgUrl = data[0].background;
-        document.getElementById("bg-style").textContent = `
-          body {
-            background: url('${bgUrl}') no-repeat center center fixed;
-            background-size: cover;
-          }
-        `;
-      });
-  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
@@ -35,28 +20,26 @@
     <p>Bismillahirrahmanirrahim</p>
   </header>
 
-  <!-- Produk -->
-  <main id="produk-container" class="product-grid">
-    <!-- Produk akan dimuat via JavaScript -->
+  <!-- Kontainer Produk -->
+  <main>
+    <div id="product-container" class="product-grid"></div>
   </main>
 
-  <!-- Tombol Kirim Pesan -->
+  <!-- Form Kirim Pesan -->
   <button class="message-btn" onclick="document.getElementById('form-popup').style.display='flex'">✉ Kirim Pesan</button>
-
-  <!-- Modal Kirim Pesan -->
   <div id="form-popup" class="modal" onclick="closeModal()">
-    <form id="kirim-form" class="modal-content" onclick="event.stopPropagation()">
+    <form action="https://formspree.io/f/xnnvrqqv" method="POST" class="modal-content" onclick="event.stopPropagation()">
       <h3>Kirim Pesan ke Admin</h3>
-      <input type="text" name="nama" placeholder="Nama Anda" required />
-      <textarea name="pesan" placeholder="Tulis pesan..." required></textarea>
+      <input type="text" name="name" placeholder="Nama Anda" required />
+      <textarea name="message" placeholder="Tulis pesan..." required></textarea>
       <button type="submit" class="order-btn">Kirim</button>
     </form>
   </div>
 
-  <!-- Modal Gambar Preview -->
+  <!-- Modal Preview Gambar -->
   <div id="img-modal" class="modal" onclick="closeModal()">
-    <span class="modal-close">×</span>
-    <img class="modal-content" id="img-preview">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="img-preview" />
   </div>
 
   <!-- Footer Sosial -->
@@ -66,7 +49,7 @@
     <a href="https://whatsapp.com/channel/0029Vb50GTCLdQeUtFhkEo39"><i class="fas fa-users"></i></a>
   </footer>
 
-  <!-- Script -->
+  <!-- SCRIPT -->
   <script src="script.js"></script>
 </body>
 </html>
