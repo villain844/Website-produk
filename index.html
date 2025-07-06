@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style id="bg-style"></style>
   <script>
-    // Atur background dari SheetDB
+    // Background dari SheetDB
     fetch("https://sheetdb.io/api/v1/wdiag49r7wv0s")
       .then(res => res.json())
       .then(data => {
@@ -20,9 +20,6 @@
             background-size: cover;
           }
         `;
-      })
-      .catch(err => {
-        console.error("Gagal mengambil background:", err);
       });
   </script>
 </head>
@@ -38,24 +35,25 @@
     <p>Bismillahirrahmanirrahim</p>
   </header>
 
-  <!-- Produk dari API -->
+  <!-- Produk -->
   <main id="produk-container" class="product-grid">
-    <!-- Data produk akan dimuat via JavaScript -->
+    <!-- Produk akan dimuat via JavaScript -->
   </main>
 
-  <!-- Form Kirim Pesan -->
+  <!-- Tombol Kirim Pesan -->
   <button class="message-btn" onclick="document.getElementById('form-popup').style.display='flex'">✉ Kirim Pesan</button>
 
+  <!-- Modal Kirim Pesan -->
   <div id="form-popup" class="modal" onclick="closeModal()">
-    <form action="https://formspree.io/f/xnnvrqqv" method="POST" class="modal-content" onclick="event.stopPropagation()">
+    <form id="kirim-form" class="modal-content" onclick="event.stopPropagation()">
       <h3>Kirim Pesan ke Admin</h3>
-      <input type="text" name="name" placeholder="Nama Anda" required>
-      <textarea name="message" placeholder="Tulis pesan..." required></textarea>
+      <input type="text" name="nama" placeholder="Nama Anda" required />
+      <textarea name="pesan" placeholder="Tulis pesan..." required></textarea>
       <button type="submit" class="order-btn">Kirim</button>
     </form>
   </div>
 
-  <!-- Modal Preview Gambar -->
+  <!-- Modal Gambar Preview -->
   <div id="img-modal" class="modal" onclick="closeModal()">
     <span class="modal-close">×</span>
     <img class="modal-content" id="img-preview">
@@ -68,6 +66,7 @@
     <a href="https://whatsapp.com/channel/yourchannel"><i class="fas fa-users"></i></a>
   </footer>
 
+  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
