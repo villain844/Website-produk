@@ -87,3 +87,10 @@ document.querySelector("form").addEventListener("submit", function (e) {
     })
     .catch(() => alert("Gagal mengirim pesan."));
 });
+
+function bukaForm() {
+  document.getElementById("popupForm").style.display = "block";
+}
+function tutupForm() {
+  document.getElementById("popupForm").style.display = "none";
+}
