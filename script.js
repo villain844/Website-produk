@@ -1,4 +1,4 @@
-// Ambil background dari API SheetDB
+// ==== BACKGROUND OTOMATIS DARI API ====
 fetch("https://sheetdb.io/api/v1/wdiag49r7wv0s")
   .then(res => res.json())
   .then(data => {
@@ -11,76 +11,82 @@ fetch("https://sheetdb.io/api/v1/wdiag49r7wv0s")
   })
   .catch(err => console.error("Gagal ambil background:", err));
 
-// Tampilkan modal gambar besar
-function showPreview(src) {
+// ==== PREVIEW GAMBAR ====
+function showPreview(imgSrc) {
   const modal = document.getElementById("img-modal");
-  const preview = document.getElementById("img-preview");
+  const modalImg = document.getElementById("img-preview");
   modal.style.display = "flex";
-  preview.src = src;
+  modalImg.src = imgSrc;
 }
 
-// Tutup modal gambar atau form
 function closeModal() {
   document.getElementById("img-modal").style.display = "none";
   const form = document.getElementById("form-popup");
   if (form) form.style.display = "none";
 }
 
-// Toggle deskripsi “Lihat Selengkapnya”
+// ==== BACA SELENGKAPNYA DESKRIPSI PRODUK ====
 function toggleDesc(button) {
   const desc = button.previousElementSibling;
-  const shortText = desc.querySelector('.short-text');
-  const fullText = desc.querySelector('.full-text');
-  const show = fullText.style.display === 'none';
-  fullText.style.display = show ? 'inline' : 'none';
-  shortText.style.display = show ? 'none' : 'inline';
-  button.textContent = show ? 'Sembunyikan' : 'Lihat Selengkapnya';
+  const shortText = desc.querySelector(".short-text");
+  const fullText = desc.querySelector(".full-text");
+  const show = fullText.style.display === "none";
+
+  fullText.style.display = show ? "inline" : "none";
+  shortText.style.display = show ? "none" : "inline";
+  button.textContent = show ? "Sembunyikan" : "Lihat Selengkapnya";
 }
 
-// Kirim pesan ke SheetDB
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("form");
-  const toast = document.createElement("div");
+// ==== TOMBOL BUKA FORM PESAN ====
+function openMessageForm() {
+  const form = document.getElementById("form-popup");
+  form.style.display = "flex";
+}
 
-  toast.className = "toast";
-  document.body.appendChild(toast);
+// ==== TOMBOL BATAL FORM PESAN ====
+function cancelForm() {
+  document.getElementById("form-popup").style.display = "none";
+}
+
+// ==== KIRIM PESAN KE SHEETDB ====
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("form-pesan");
+  const notif = document.getElementById("notif");
 
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      const formData = new FormData(form);
+      const nama = form.querySelector("[name='nama']").value.trim();
+      const pesan = form.querySelector("[name='pesan']").value.trim();
+
+      if (!nama || !pesan) return alert("Lengkapi semua isian!");
+
       const data = {
-        id: Date.now().toString(),
-        nama: formData.get("name"),
-        pesan: formData.get("message")
+        nama: nama,
+        pesan: pesan
       };
 
       fetch("https://sheetdb.io/api/v1/hkydnwssgudey", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ data })
+        body: JSON.stringify({ data: data })
       })
         .then(res => res.json())
         .then(() => {
+          notif.innerText = "✅ Pesan berhasil dikirim!";
+          notif.style.display = "block";
           form.reset();
-          closeModal();
-          showToast("✅ Pesan berhasil dikirim!");
+          setTimeout(() => {
+            notif.style.display = "none";
+            cancelForm();
+          }, 3000);
         })
-        .catch(() => {
-          showToast("❌ Gagal mengirim pesan.");
+        .catch(err => {
+          notif.innerText = "❌ Gagal mengirim pesan.";
+          notif.style.display = "block";
+          setTimeout(() => notif.style.display = "none", 3000);
         });
     });
-  }
-
-  function showToast(message) {
-    toast.textContent = message;
-    toast.style.top = "20px";
-    toast.style.opacity = 1;
-
-    setTimeout(() => {
-      toast.style.top = "-60px";
-      toast.style.opacity = 0;
-    }, 3000);
   }
 });
