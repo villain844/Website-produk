@@ -29,14 +29,15 @@
   <button class="message-btn" onclick="openForm()">✉ Kirim Pesan</button>
 
   <!-- Modal Form -->
-  <div id="form-popup" class="modal" onclick="closeModal()">
-    <form class="modal-content" onclick="event.stopPropagation()">
-      <h3>Kirim Pesan</h3>
-      <input type="text" id="nama" placeholder="Nama Anda" required>
-      <textarea id="pesan" placeholder="Tulis pesan..." required></textarea>
-      <button type="submit" class="order-btn">Kirim</button>
-      <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
-    </form>
+  <div id="popupForm" style="display: none;">
+  <h2>📝 Kirim Pesan</h2>
+  <form id="formKirimPesan">
+    <input type="text" name="nama" placeholder="Nama Anda" required />
+    <textarea name="pesan" rows="4" placeholder="Tulis pesan..." required></textarea>
+    <br />
+    <button type="submit">Kirim</button>
+    <button type="button" onclick="tutupForm()">Batal</button>
+  </form>
   </div>
 
   <!-- Modal Gambar -->
