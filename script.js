@@ -1,78 +1,86 @@
-// Ganti background otomatis dari API SheetDB
+// Ambil background dari API SheetDB
 fetch("https://sheetdb.io/api/v1/wdiag49r7wv0s")
   .then(res => res.json())
   .then(data => {
     if (data.length > 0 && data[0].background) {
       document.body.style.backgroundImage = `url('${data[0].background}')`;
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundAttachment = "fixed";
+      document.body.style.backgroundPosition = "center";
     }
-  });
+  })
+  .catch(err => console.error("Gagal ambil background:", err));
 
-// Tampilkan produk dari SheetDB
-fetch("https://sheetdb.io/api/v1/vmf2cfpzd8dpr")
-  .then(res => res.json())
-  .then(data => {
-    const container = document.getElementById("product-container");
-    container.innerHTML = "";
-    data.forEach(item => {
-      const card = document.createElement("div");
-      card.className = "product-card";
-      card.innerHTML = `
-        <img src="${item.foto}" class="product-img" onclick="showPreview('${item.foto}')">
-        <div class="product-info">
-          <h3>${item.nama}</h3>
-          <div class="price">IDR ${item.harga}</div>
-          <div class="stock">Stok: ${item.stok}</div>
-          <p class="desc">
-            <span class="short-text">${item.deskripsi.slice(0, 40)}...</span>
-            <span class="full-text" style="display:none;">${item.deskripsi}</span>
-          </p>
-          <button class="read-more" onclick="toggleDesc(this)">Lihat Selengkapnya</button>
-          <a class="order-btn" href="https://wa.me/6285134380708?text=BG+MAU+ORDER+${encodeURIComponent(item.nama)}" target="_blank">Order</a>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-  });
-
-// Fungsi toggle deskripsi
-function toggleDesc(button) {
-  const desc = button.previousElementSibling;
-  const shortText = desc.querySelector(".short-text");
-  const fullText = desc.querySelector(".full-text");
-  const isOpen = fullText.style.display === "inline";
-  shortText.style.display = isOpen ? "inline" : "none";
-  fullText.style.display = isOpen ? "none" : "inline";
-  button.textContent = isOpen ? "Lihat Selengkapnya" : "Sembunyikan";
-}
-
-// Tampilkan preview gambar
+// Tampilkan modal gambar besar
 function showPreview(src) {
   const modal = document.getElementById("img-modal");
-  const img = document.getElementById("img-preview");
+  const preview = document.getElementById("img-preview");
   modal.style.display = "flex";
-  img.src = src;
+  preview.src = src;
 }
 
-// Tutup modal (gambar/pesan)
+// Tutup modal gambar atau form
 function closeModal() {
-  document.querySelectorAll(".modal").forEach(m => m.style.display = "none");
+  document.getElementById("img-modal").style.display = "none";
+  const form = document.getElementById("form-popup");
+  if (form) form.style.display = "none";
+}
+
+// Toggle deskripsi “Lihat Selengkapnya”
+function toggleDesc(button) {
+  const desc = button.previousElementSibling;
+  const shortText = desc.querySelector('.short-text');
+  const fullText = desc.querySelector('.full-text');
+  const show = fullText.style.display === 'none';
+  fullText.style.display = show ? 'inline' : 'none';
+  shortText.style.display = show ? 'none' : 'inline';
+  button.textContent = show ? 'Sembunyikan' : 'Lihat Selengkapnya';
 }
 
 // Kirim pesan ke SheetDB
-document.querySelector("form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const nama = e.target.nama.value;
-  const pesan = e.target.pesan.value;
-  const res = await fetch("https://sheetdb.io/api/v1/hkydnwssgudey", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ data: [{ nama, pesan }] })
-  });
-  if (res.ok) {
-    alert("Pesan berhasil dikirim!");
-    e.target.reset();
-    closeModal();
-  } else {
-    alert("Gagal mengirim pesan.");
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("form");
+  const toast = document.createElement("div");
+
+  toast.className = "toast";
+  document.body.appendChild(toast);
+
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = {
+        id: Date.now().toString(),
+        nama: formData.get("name"),
+        pesan: formData.get("message")
+      };
+
+      fetch("https://sheetdb.io/api/v1/hkydnwssgudey", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data })
+      })
+        .then(res => res.json())
+        .then(() => {
+          form.reset();
+          closeModal();
+          showToast("✅ Pesan berhasil dikirim!");
+        })
+        .catch(() => {
+          showToast("❌ Gagal mengirim pesan.");
+        });
+    });
+  }
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.style.top = "20px";
+    toast.style.opacity = 1;
+
+    setTimeout(() => {
+      toast.style.top = "-60px";
+      toast.style.opacity = 0;
+    }, 3000);
   }
 });
