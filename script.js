@@ -2,14 +2,15 @@
 fetch("https://sheetdb.io/api/v1/wdiag49r7wv0s")
   .then(res => res.json())
   .then(data => {
-    if (data.length > 0 && data[0].background) {
-      document.body.style.backgroundImage = `url('${data[0].background}')`;
+    const aktifBg = data.find(item => item.status && item.status.toLowerCase() === "aktif");
+    if (aktifBg && aktifBg.background) {
+      document.body.style.backgroundImage = `url('${aktifBg.background}')`;
       document.body.style.backgroundSize = "cover";
       document.body.style.backgroundAttachment = "fixed";
       document.body.style.backgroundPosition = "center";
     }
   })
-  .catch(err => console.error("Gagal ambil background:", err));
+  .catch(err => console.error("Gagal ambil background aktif:", err));
 
 // ==== PREVIEW GAMBAR ====
 function showPreview(imgSrc) {
