@@ -1,21 +1,39 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: url('https://files.catbox.moe/u2amkq.jpg') no-repeat center center fixed;
   background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: #fff;
+  overflow-x: hidden;
 }
 
-.pengumuman-banner {
+.loading-screen {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  color: #00f7ff;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.banner {
   width: 100%;
   max-height: 350px;
   object-fit: cover;
   border-radius: 0 0 20px 20px;
+  cursor: zoom-in;
 }
 
 .profile-header {
-  text-align: center;
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
 }
 
 .profile-img {
@@ -23,176 +41,152 @@ body {
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #00f2ff;
-  box-shadow: 0 0 15px #00f2ff;
+  box-shadow: 0 0 12px #00f7ff;
+  cursor: zoom-in;
 }
 
 .profile-header span {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #00f2ff;
-  display: block;
+  font-weight: 600;
+  margin-top: 10px;
 }
 
 .profile-header p {
   font-size: 0.9rem;
   color: #ccc;
-  margin-top: 4px;
 }
 
-/* Produk */
 .product-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
+  justify-content: space-around;
+  gap: 20px;
+  max-width: 900px;
+  margin: auto;
   padding: 20px;
 }
 
 .product-card {
-  width: 45%;
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 14px;
-  padding: 12px;
-  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
-  backdrop-filter: blur(6px);
-  color: #fff;
+  width: 42%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+  text-align: center;
+  backdrop-filter: blur(10px);
 }
 
 .product-img {
   width: 70px;
   height: 70px;
+  border-radius: 10px;
   object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 8px;
-  cursor: pointer;
+  margin-bottom: 10px;
+  box-shadow: 0 0 8px #00f7ff;
+  cursor: zoom-in;
 }
 
 .product-info h3 {
-  margin: 4px 0;
   font-size: 14px;
+  margin: 6px 0;
 }
 
-.product-info .price {
+.price, .stock {
   font-size: 13px;
-  color: #0ff;
-}
-
-.product-info .stock {
-  font-size: 12px;
-  color: #ccc;
-  margin-bottom: 6px;
+  color: #aef;
+  margin-bottom: 4px;
 }
 
 .desc {
   font-size: 12px;
-  color: #ccc;
-  margin-bottom: 6px;
+  margin: 6px 0;
 }
 
 .read-more {
+  font-size: 12px;
   background: none;
   border: none;
-  color: #00f2ff;
-  font-size: 12px;
+  color: #0ff;
   cursor: pointer;
-  margin-bottom: 6px;
 }
 
 .order-btn {
-  background: linear-gradient(145deg, #00f2ff, #00a2ff);
-  border: none;
-  padding: 8px 14px;
-  color: #000;
-  font-weight: bold;
+  background: linear-gradient(to right, #00d4ff, #0080ff);
+  color: white;
+  padding: 10px 16px;
   border-radius: 10px;
-  width: 100%;
+  font-weight: bold;
+  border: none;
   cursor: pointer;
-  box-shadow: 0 4px #0080a0;
-  transition: 0.2s;
-  font-size: 13px;
+  margin-top: 10px;
+  transition: all 0.2s ease;
 }
 
-.order-btn:active {
-  transform: translateY(2px);
-  box-shadow: none;
+.order-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 183, 255, 0.6);
 }
 
-/* Modal */
 .modal {
   display: none;
   position: fixed;
-  z-index: 999;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
   background: rgba(0,0,0,0.8);
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 
 .modal-content {
+  background: #111;
+  padding: 20px;
+  border-radius: 14px;
   max-width: 90%;
-  max-height: 90%;
-  border-radius: 12px;
+  width: 360px;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: none;
 }
 
 .modal-close {
   position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 24px;
+  top: 10px; right: 20px;
+  font-size: 28px;
   color: #fff;
   cursor: pointer;
 }
 
-/* Form Kirim Pesan */
-.form-section {
-  padding: 20px;
-  text-align: center;
-}
-
-#pesan-form input, #pesan-form textarea {
-  width: 90%;
-  max-width: 400px;
-  margin: 6px auto;
-  padding: 8px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-}
-
-.send-btn {
+.form-actions {
+  display: flex;
+  justify-content: space-between;
   margin-top: 10px;
-  padding: 10px 20px;
-  background: linear-gradient(to right, #00f2ff, #00c2ff);
+}
+
+.cancel-btn {
+  background: #ff4444;
+  color: white;
+  padding: 8px 14px;
   border: none;
   border-radius: 10px;
-  color: black;
   font-weight: bold;
-  box-shadow: 0 4px #0099cc;
   cursor: pointer;
 }
 
-.send-btn:active {
-  transform: scale(0.97);
-  box-shadow: none;
-}
-
-.notif-pesan {
-  margin-top: 10px;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-/* Footer */
 .social-footer {
+  margin-top: 30px;
   display: flex;
   justify-content: center;
-  gap: 20px;
-  padding: 20px;
+  gap: 30px;
+  padding: 20px 0;
 }
 
 .social-footer a {
-  font-size: 20px;
-  color: #00f2ff;
-}
+  color: white;
+  font-size: 22px;
+    }
