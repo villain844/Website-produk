@@ -11,42 +11,39 @@
 <body>
 
   <!-- Banner -->
-  <img src="https://files.catbox.moe/xunhl0.png" alt="Pengumuman" class="pengumuman-banner" onclick="showPreview(this.src)">
+  <img src="https://files.catbox.moe/xunhl0.png" alt="Pengumuman Villain Hosting" class="pengumuman-banner" onclick="showPreview(this.src)" />
 
   <!-- Profil -->
   <header class="profile-header">
-    <img src="https://files.catbox.moe/c7fi9o.png" alt="Profile" class="profile-img" onclick="showPreview(this.src)">
+    <img src="https://files.catbox.moe/c7fi9o.png" alt="@villain hosting" class="profile-img" onclick="showPreview(this.src)" />
     <span>@villain hosting</span>
     <p>Bismillahirrahmanirrahim</p>
   </header>
 
-  <!-- Produk -->
-  <main class="product-grid" id="product-list">
-    <!-- Produk akan dimuat via script.js -->
-  </main>
+  <!-- Produk Grid -->
+  <main class="product-grid" id="product-container"></main>
 
   <!-- Tombol Kirim Pesan -->
-  <button class="message-btn" onclick="openForm()">✉ Kirim Pesan</button>
+  <button class="message-btn" onclick="document.getElementById('form-popup').style.display='flex'">✉ Kirim Pesan</button>
 
-  <!-- Modal Form -->
-  <div id="popupForm" style="display: none;">
-  <h2>📝 Kirim Pesan</h2>
-  <form id="formKirimPesan">
-    <input type="text" name="nama" placeholder="Nama Anda" required />
-    <textarea name="pesan" rows="4" placeholder="Tulis pesan..." required></textarea>
-    <br />
-    <button type="submit">Kirim</button>
-    <button type="button" onclick="tutupForm()">Batal</button>
-  </form>
+  <!-- Form Kirim Pesan -->
+  <div id="form-popup" class="modal" onclick="closeModal()">
+    <form class="modal-content" onclick="event.stopPropagation()">
+      <h3>Kirim Pesan ke Admin</h3>
+      <input type="text" name="nama" placeholder="Nama Anda" required />
+      <textarea name="pesan" placeholder="Tulis pesan..." required></textarea>
+      <button type="submit" class="order-btn">Kirim</button>
+      <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
+    </form>
   </div>
 
-  <!-- Modal Gambar -->
+  <!-- Preview Gambar -->
   <div id="img-modal" class="modal" onclick="closeModal()">
     <span class="modal-close">&times;</span>
-    <img id="img-preview" class="modal-content" />
+    <img class="modal-content" id="img-preview">
   </div>
 
-  <!-- Footer -->
+  <!-- Sosial Media -->
   <footer class="social-footer">
     <a href="https://wa.me/6285134380708"><i class="fab fa-whatsapp"></i></a>
     <a href="https://www.tiktok.com/@villain_hosting"><i class="fab fa-tiktok"></i></a>
