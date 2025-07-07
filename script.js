@@ -67,10 +67,6 @@ function closeModal() {
   document.querySelectorAll(".modal").forEach(modal => modal.style.display = "none");
 }
 
-// Form kirim pesan
-function openForm() {
-  document.getElementById("form-popup").style.display = "flex";
-}
 
 document.querySelector("form").addEventListener("submit", function (e) {
   e.preventDefault();
