@@ -1,92 +1,78 @@
-// Loading screen
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    document.getElementById("loadingScreen").style.display = "none";
-  }, 3000);
-});
-
-// Load background dari SheetDB
+// Ganti background otomatis dari API SheetDB
 fetch("https://sheetdb.io/api/v1/wdiag49r7wv0s")
   .then(res => res.json())
   .then(data => {
-    const aktif = data.find(bg => bg.status && bg.status.toLowerCase() === "aktif");
-    if (aktif && aktif.background) {
-      document.body.style.backgroundImage = `url('${aktif.background}')`;
-      document.body.style.backgroundSize = "cover";
-      document.body.style.backgroundAttachment = "fixed";
-      document.body.style.backgroundPosition = "center";
+    if (data.length > 0 && data[0].background) {
+      document.body.style.backgroundImage = `url('${data[0].background}')`;
     }
-  })
-  .catch(err => console.error("Gagal ambil background aktif:", err));
+  });
 
-// Produk dari SheetDB
+// Tampilkan produk dari SheetDB
 fetch("https://sheetdb.io/api/v1/vmf2cfpzd8dpr")
   .then(res => res.json())
   .then(data => {
-    const container = document.getElementById("product-list");
-    data.forEach(prod => {
-      container.innerHTML += `
-        <div class="product-card">
-          <img src="${prod.foto}" class="product-img" onclick="showPreview('${prod.foto}')">
-          <div class="product-info">
-            <h3>${prod.nama}</h3>
-            <div class="price">IDR ${prod.harga}</div>
-            <div class="stock">Stok: ${prod.stok}</div>
-            <p class="desc">
-              <span class="short-text">${prod.deskripsi.substring(0, 35)}...</span>
-              <span class="full-text" style="display:none;">${prod.deskripsi}</span>
-            </p>
-            <button class="read-more" onclick="toggleDesc(this)">Lihat Selengkapnya</button>
-            <a class="order-btn" href="https://wa.me/6285134380708?text=BG+MAU+ORDER+${encodeURIComponent(prod.nama)}">Order</a>
-          </div>
-        </div>`;
+    const container = document.getElementById("product-container");
+    container.innerHTML = "";
+    data.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${item.foto}" class="product-img" onclick="showPreview('${item.foto}')">
+        <div class="product-info">
+          <h3>${item.nama}</h3>
+          <div class="price">IDR ${item.harga}</div>
+          <div class="stock">Stok: ${item.stok}</div>
+          <p class="desc">
+            <span class="short-text">${item.deskripsi.slice(0, 40)}...</span>
+            <span class="full-text" style="display:none;">${item.deskripsi}</span>
+          </p>
+          <button class="read-more" onclick="toggleDesc(this)">Lihat Selengkapnya</button>
+          <a class="order-btn" href="https://wa.me/6285134380708?text=BG+MAU+ORDER+${encodeURIComponent(item.nama)}" target="_blank">Order</a>
+        </div>
+      `;
+      container.appendChild(card);
     });
   });
 
-// Toggle deskripsi
-function toggleDesc(btn) {
-  const desc = btn.parentElement.querySelector(".desc");
+// Fungsi toggle deskripsi
+function toggleDesc(button) {
+  const desc = button.previousElementSibling;
   const shortText = desc.querySelector(".short-text");
   const fullText = desc.querySelector(".full-text");
-  const showing = fullText.style.display === "inline";
-  fullText.style.display = showing ? "none" : "inline";
-  shortText.style.display = showing ? "inline" : "none";
-  btn.textContent = showing ? "Lihat Selengkapnya" : "Sembunyikan";
+  const isOpen = fullText.style.display === "inline";
+  shortText.style.display = isOpen ? "inline" : "none";
+  fullText.style.display = isOpen ? "none" : "inline";
+  button.textContent = isOpen ? "Lihat Selengkapnya" : "Sembunyikan";
 }
 
-// Preview gambar
+// Tampilkan preview gambar
 function showPreview(src) {
   const modal = document.getElementById("img-modal");
-  const preview = document.getElementById("img-preview");
-  preview.src = src;
+  const img = document.getElementById("img-preview");
   modal.style.display = "flex";
+  img.src = src;
 }
 
-// Close modal
+// Tutup modal (gambar/pesan)
 function closeModal() {
-  document.querySelectorAll(".modal").forEach(modal => modal.style.display = "none");
+  document.querySelectorAll(".modal").forEach(m => m.style.display = "none");
 }
 
-
-document.querySelector("form").addEventListener("submit", function (e) {
+// Kirim pesan ke SheetDB
+document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const nama = document.getElementById("nama").value.trim();
-  const pesan = document.getElementById("pesan").value.trim();
-  fetch("https://sheetdb.io/api/v1/hkydnwssgudey", {
+  const nama = e.target.nama.value;
+  const pesan = e.target.pesan.value;
+  const res = await fetch("https://sheetdb.io/api/v1/hkydnwssgudey", {
     method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify([{ nama, pesan }])
-  })
-    .then(() => {
-      alert("Pesan berhasil dikirim!");
-      closeModal();
-    })
-    .catch(() => alert("Gagal mengirim pesan."));
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ data: [{ nama, pesan }] })
+  });
+  if (res.ok) {
+    alert("Pesan berhasil dikirim!");
+    e.target.reset();
+    closeModal();
+  } else {
+    alert("Gagal mengirim pesan.");
+  }
 });
-
-function bukaForm() {
-  document.getElementById("popupForm").style.display = "block";
-}
-function tutupForm() {
-  document.getElementById("popupForm").style.display = "none";
-}
