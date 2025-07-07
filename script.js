@@ -39,10 +39,15 @@ function toggleDesc(btn) {
 fetch("https://sheetdb.io/api/v1/wdiag49r7wv0s")
   .then(res => res.json())
   .then(data => {
-    if (data.length > 0) {
-      document.body.style.backgroundImage = `url('${data[0].background}')`;
+    const aktif = data.find(bg => bg.status && bg.status.toLowerCase() === "aktif");
+    if (aktif && aktif.background) {
+      document.body.style.backgroundImage = `url('${aktif.background}')`;
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundAttachment = "fixed";
+      document.body.style.backgroundPosition = "center";
     }
-  });
+  })
+  .catch(err => console.error("Gagal ambil background aktif:", err));
 
 // Ambil produk dari API
 fetch("https://sheetdb.io/api/v1/vmf2cfpzd8dpr")
